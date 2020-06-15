@@ -19,4 +19,27 @@ def binary_search(arr, target, start, end):
 # or iteratively
 def agnostic_binary_search(arr, target):
     # Your code here
-    pass
+    start = 0 #arr[0]
+    end = len(arr) #arr[len(arr) - 1]
+    mid = start + end // 2 # get middle floor
+    if arr[start] < arr[end -1]: # check if list is sorted ascending.
+        if target == arr[mid]:
+            return mid
+        elif target < arr[mid]:# remove right side (larger numbers)
+            end = mid - 1
+            return agnostic_binary_search(arr, target)
+        else:# remove left side (smaller numbers)
+            start = mid + 1
+            return agnostic_binary_search(arr, target)
+    else:
+        if target == arr[mid]:
+            return mid
+        elif target < arr[mid]:# remove left side (larger numbers)
+            start = mid + 1
+            return agnostic_binary_search(arr, target)
+        else:# remove right side (smaller numbers)
+            end = mid - 1
+            return agnostic_binary_search(arr, target)
+
+
+
